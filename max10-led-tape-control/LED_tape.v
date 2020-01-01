@@ -48,8 +48,11 @@ always @(posedge clk)
 	end
 assign num = cntN;
 
-reg [23:0]shift_r24;
+reg [23:0]shift_r24 = 0;
 always @(posedge clk)
+	if( sync )
+		shift_r24 <= 0;
+	else
 	if(req_)
 		shift_r24 <= RGB;
 	else
